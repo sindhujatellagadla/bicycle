@@ -1,5 +1,6 @@
 package com.manufacture.exception;
 
+@SuppressWarnings("serial")
 public class DaoException extends BicycleException {
 
 	public DaoException() {

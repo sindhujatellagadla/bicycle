@@ -16,7 +16,7 @@ public class BicycleServiceImpl implements BicycleService {
 	BicycleMain bicycleMain = new BicycleMain();
 
 	public ArrayList<Bicycle> getListOfMaterial(int n) throws ServiceException {
-		ArrayList<Bicycle> items = new ArrayList();
+		ArrayList<Bicycle> items = new ArrayList<Bicycle>();
 		try {
 			items = bicycleDao.getItemsForBicycle();
 		} catch (DaoException e) {
@@ -27,7 +27,7 @@ public class BicycleServiceImpl implements BicycleService {
 	}
 
 	public ArrayList<Brakeset> getListForBrakeset(int n) throws ServiceException {
-		ArrayList<Brakeset> list = new ArrayList();
+		ArrayList<Brakeset> list = new ArrayList<Brakeset>();
 		try {
 			list = bicycleDao.getListForBrakeset();
 		} catch (DaoException e) {
@@ -37,15 +37,10 @@ public class BicycleServiceImpl implements BicycleService {
 	}
 
 	public ArrayList<Inventory> netOff() throws ServiceException {
-		ArrayList<Inventory> stockAvailable = new ArrayList();
-		//ArrayList<Inventory> stockRequired=new ArrayList();
+		ArrayList<Inventory> stockAvailable = new ArrayList<Inventory>();
+
 		try {
 			stockAvailable = bicycleDao.getStock();
-			//stockRequired=stockAvailable-inv1;
-			/*
-			 * bicycleMain. Map<String, Integer> bicycleItemsAvailable =
-			 * BicycleMain.displayItemsForBrakeset(, 0);
-			 */
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}

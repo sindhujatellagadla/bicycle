@@ -1,5 +1,6 @@
 package com.manufacture.exception;
 
+@SuppressWarnings("serial")
 public class connectionUtitlityException extends BicycleException {
 
 	public connectionUtitlityException() {

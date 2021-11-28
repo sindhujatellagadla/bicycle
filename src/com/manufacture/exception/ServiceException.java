@@ -1,5 +1,6 @@
 package com.manufacture.exception;
 
+@SuppressWarnings("serial")
 public class ServiceException extends BicycleException {
 
 	public ServiceException() {

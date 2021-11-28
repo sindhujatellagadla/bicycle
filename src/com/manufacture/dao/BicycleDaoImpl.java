@@ -18,10 +18,9 @@ public class BicycleDaoImpl implements BicycleDao {
 	static Scanner scanner = new Scanner(System.in);
 	static ConnectionUtility connection = new ConnectionUtility();
 
-	@Override
 	public ArrayList<Bicycle> getItemsForBicycle() throws DaoException {
 		Connection con = null;
-		ArrayList<Bicycle> inv = new ArrayList();
+		ArrayList<Bicycle> inv = new ArrayList<Bicycle>();
 		try {
 			con = connection.getMyConnection();
 		} catch (connectionUtitlityException e) {
@@ -49,7 +48,7 @@ public class BicycleDaoImpl implements BicycleDao {
 
 	public ArrayList<Brakeset> getListForBrakeset() throws DaoException {
 		Connection con = null;
-		ArrayList<Brakeset> brakeset = new ArrayList();
+		ArrayList<Brakeset> brakeset = new ArrayList<Brakeset>();
 		try {
 			con = connection.getMyConnection();
 		} catch (connectionUtitlityException e) {
@@ -65,19 +64,18 @@ public class BicycleDaoImpl implements BicycleDao {
 			while (resultset.next()) {
 				String item = resultset.getString(1);
 				int count1 = resultset.getInt(2);
-				Brakeset bs = new Brakeset(item,count1);
+				Brakeset bs = new Brakeset(item, count1);
 				brakeset.add(bs);
 			}
-		}
-			catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
 		return brakeset;
 	}
-	
+
 	public ArrayList<Inventory> getStock() throws DaoException {
 		Connection con = null;
-		ArrayList<Inventory> inven=new ArrayList();
+		ArrayList<Inventory> inven = new ArrayList<Inventory>();
 		try {
 			con = connection.getMyConnection();
 		} catch (connectionUtitlityException e) {
@@ -93,15 +91,12 @@ public class BicycleDaoImpl implements BicycleDao {
 			while (resultset.next()) {
 				String item = resultset.getString(1);
 				int stock = resultset.getInt(2);
-				Inventory inventory = new Inventory(item,stock);
+				Inventory inventory = new Inventory(item, stock);
 				inven.add(inventory);
 			}
-		}
-			catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new DaoException(e);
 		}
 		return inven;
 	}
 }
-
-
