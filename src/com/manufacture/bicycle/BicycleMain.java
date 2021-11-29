@@ -32,19 +32,71 @@ public class BicycleMain {
 			e.printStackTrace();
 		}
 	}
+	
+	// Method to obtain the Level - 1 of Material requirement gathering details based on the number of items requested from the user.
+		
+	public static Map<String, Integer> displayItems(int n) {
 
+		System.out.println("To assemble Bicycle\n");
+		Map<String, Integer> bicycleMap = new HashMap<String, Integer>();
+		bicycleMap.put("seats", n);
+		bicycleMap.put("frames", n);
+		bicycleMap.put("brake sets", n * 2);
+		bicycleMap.put("handlebars", n);
+		bicycleMap.put("wheels", n * 2);
+		bicycleMap.put("tires", n * 2);
+		bicycleMap.put("chains", n);
+		bicycleMap.put("crank set", n);
+		bicycleMap.put("paddles", n * 2);
+
+		for (Map.Entry<String, Integer> entry : bicycleMap.entrySet()) {
+			System.out.println(entry.getKey() + ", count : " + entry.getValue());
+		}
+		System.out.println();
+		return bicycleMap;
+
+	}
+	
+	// Method to obtain the Level - 2 of Material requirement gathering details based on the number of items requested from the user.
+	// A Single bicycle requires 2 Brakesets to be assembled.
+
+	public static Map<String, Integer> displayItemsForBrakeset(int n) {
+		System.out.println("To assemble Brakeset\n");
+
+		Map<String, Integer> brakesetmap = new HashMap<String, Integer>();
+
+		brakesetmap.put("brakepaddle", n * 2);
+		brakesetmap.put("brakecable", n * 2);
+		brakesetmap.put("set of lever", n * 2);
+		brakesetmap.put("brakeshoes", n * 4);
+
+		for (Map.Entry<String, Integer> entry : brakesetmap.entrySet()) {
+			System.out.println(entry.getKey() + ", count: " + entry.getValue());
+		}
+		System.out.println();
+		return brakesetmap;
+
+	}
+	
+	//Method returns the actual requirement to be purchased
+	
+	/* Step 1 - Get the User requested bicycle details
+	** Step 2 - Get the available Stock from the store
+	** Step 3 - Calculate and display the actual material to be purchased
+	*/
+	
 	private static void availableStock() {
 
 		ArrayList<Inventory> totalStock;
 		try {
 			totalStock = bicycleService.netOff();
 			Map<String, Integer> availableStock = new HashMap<String, Integer>();
-
-			for (int i = 0; i < totalStock.size(); i++) {
-				availableStock.put(totalStock.get(i).getItem(), totalStock.get(i).getStock());
+			
+			for(Inventory avialStock:totalStock){
+				availableStock.put(avialStock.getItem(), avialStock.getStock());
 			}
-			Map<String, Integer> userRequestedBicycleItems = displayItems(inv1, n);
-			Map<String, Integer> userRequestedBraksetItems = displayItemsForBrakeset(brakeset1, n);
+			Map<String, Integer> userRequestedBicycleItems = displayItems(n);
+			Map<String, Integer> userRequestedBraksetItems = displayItemsForBrakeset(n);
 			Map<String, Integer> bicycleItemsToBePurchased = new HashMap<String, Integer>();
 			Map<String, Integer> braksetItemsToBePurchased = new HashMap<String, Integer>();
 			for (Map.Entry<String, Integer> availStock : availableStock.entrySet()) {
@@ -81,45 +133,4 @@ public class BicycleMain {
 			e.printStackTrace();
 		}
 	}
-
-	public static Map<String, Integer> displayItems(ArrayList<Bicycle> inv1, int n) {
-
-		System.out.println("To assemble Bicycle\n");
-		Map<String, Integer> bicycleMap = new HashMap<String, Integer>();
-		bicycleMap.put("seats", n);
-		bicycleMap.put("frames", n);
-		bicycleMap.put("brake sets", n * 2);
-		bicycleMap.put("handlebars", n);
-		bicycleMap.put("wheels", n * 2);
-		bicycleMap.put("tires", n * 2);
-		bicycleMap.put("chains", n);
-		bicycleMap.put("crank set", n);
-		bicycleMap.put("paddles", n * 2);
-
-		for (Map.Entry<String, Integer> entry : bicycleMap.entrySet()) {
-			System.out.println(entry.getKey() + ", count : " + entry.getValue());
-		}
-		System.out.println();
-		return bicycleMap;
-
-	}
-
-	public static Map<String, Integer> displayItemsForBrakeset(ArrayList<Brakeset> brakeset1, int n) {
-		System.out.println("To assemble Brakeset\n");
-
-		Map<String, Integer> brakesetmap = new HashMap<String, Integer>();
-
-		brakesetmap.put("brakepaddle", n * 2);
-		brakesetmap.put("brakecable", n * 2);
-		brakesetmap.put("set of lever", n * 2);
-		brakesetmap.put("brakeshoes", n * 4);
-
-		for (Map.Entry<String, Integer> entry : brakesetmap.entrySet()) {
-			System.out.println(entry.getKey() + ", count: " + entry.getValue());
-		}
-		System.out.println();
-		return brakesetmap;
-
-	}
-
 }
